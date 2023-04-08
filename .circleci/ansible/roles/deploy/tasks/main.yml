@@ -1,0 +1,23 @@
+- name: Create Backend Directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+
+- copy:
+    src: ~/project/.circleci/ansible/roles/deploy/artifact.tar.gz
+    dest: /home/ubuntu/backend
+
+- name: Extract artifact.tar.gz to EC2 
+  unarchive:
+    src: artifact.tar.gz
+    dest: /home/ubuntu/backend
+
+- name: "Installing Node Dependencies"
+  shell: |
+    cd /home/ubuntu/backend
+    npm i
+- name: Start the app
+  shell: |
+    pm2 stop default
+    pm2 start -f /home/ubuntu/backend/dist/main.js
+    

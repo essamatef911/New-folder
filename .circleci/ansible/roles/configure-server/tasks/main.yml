@@ -1,0 +1,46 @@
+---
+- name: "install dependencies."
+  become: true
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "install pm2"
+  become: true
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
+
+- name: "install docker."
+  become: true
+  apt:
+    name: ["docker.io"]
+    state: latest
+    update_cache: yes
+
+- name: sudo usermod -aG docker root
+  become: True
+  shell:
+    cmd: "usermod -aG docker ubuntu"
+    chdir: .
+
+- name: Install docker-compose
+  # remote_user: ubuntu
+  become: True
+  get_url: 
+    url : https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 'u+x,g+x,o+x'
+
+- copy:
+    src: /home/circleci/project/util/docker-compose.yml
+    dest: /home/ubuntu/
+   
+- name: Run PostgresQL DB
+  become: True
+  shell:
+    cmd: "docker-compose -f docker-compose.yml up -d"
+    chdir: .

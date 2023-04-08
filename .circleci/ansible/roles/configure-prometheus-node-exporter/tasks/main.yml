@@ -1,0 +1,33 @@
+- name: "Download node exproter"
+  become: True
+  shell:
+    cmd: "wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.darwin-amd64.tar.gz; mv node_exporter-1.5.0.darwin-amd64.tar.gz /tmp"
+    chdir: .
+
+
+- name: "move node exproter"
+  become: True
+  shell:
+    cmd: "ls"
+
+- name: "move binary to /usr/local/bin."
+  become: true
+  copy:
+    src: /tmp/node_exporter-1.5.0.darwin-amd64.tar.gz
+    dest: /usr/local/bin/node_exporter
+    remote_src: yes
+    mode: '0777'
+    
+- name: "add node exporter configuration."
+  become: true
+  copy:
+    src: node_exporter.service
+    dest: /etc/systemd/system/
+
+- name: "enable node_exporter service"
+  become: true
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: node_exporter
+    enabled: yes
