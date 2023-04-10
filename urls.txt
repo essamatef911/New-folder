@@ -1,9 +1,0 @@
-1. Public Url to GitHub repository (not private) [URL01]
-    https://github.com/ashrafm11/udapeople
-
-2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]
-    http://udapeople-3faae.s3-website-us-east-1.amazonaws.com/#/employees
-
-3. deployed and functioning front-end application in CloudFront. [URL03_SCREENSHOT]
-    http://d31ttk2911r7b0.cloudfront.net/#/employees
-    
