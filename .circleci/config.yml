@@ -190,7 +190,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["4d:cd:e7:98:d6:e1:be:19:02:17:8c:08:82:56:fa:ac"]
+          fingerprints: ["79:1b:93:8b:e3:ca:fe:be:61:26:31:42:dd:c0:51:cb"]
 
       - attach_workspace:
           at: ~/
@@ -251,7 +251,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["ca:c5:ff:cf:cf:2c:9d:53:74:ee:8d:40:fb:33:30:91"]
+          fingerprints: ["79:1b:93:8b:e3:ca:fe:be:61:26:31:42:dd:c0:51:cb"]
       - run:
           name: Deploy backend
           command: |
