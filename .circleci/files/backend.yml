@@ -35,7 +35,7 @@ Resources:
       InstanceType: t3.medium
       SecurityGroups:
         - Ref: InstanceSecurityGroup
-      KeyName: web 
+      KeyName: ec2-server 
       ImageId: ami-068663a3c619dd892 
       Tags:
         - Key: Name
